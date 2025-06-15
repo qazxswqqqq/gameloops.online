@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameLoops - Free Online Games</title>
+    <meta name="description" content="Play the best free online games at GameLoops. Enjoy action, racing, puzzle, and arcade games. New games added daily!">
+    <link rel="canonical" href="https://gameloops.online" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'apple-blue': '#007AFF',
+                        'apple-gray': '#F5F5F7',
+                        'apple-dark': '#1D1D1F'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-apple-gray min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-apple-dark text-white sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="/" class="text-2xl font-bold">GameLoops</a>
+                
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-xl mx-4">
+                    <div class="relative">
+                        <input type="text" 
+                               placeholder="Search games..." 
+                               class="w-full px-4 py-2 rounded-full bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-apple-blue">
+                        <button class="absolute right-3 top-2">
+                            <i class="fas fa-search text-gray-400"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="/games/action" class="hover:text-apple-blue">Action</a>
+                    <a href="/games/racing" class="hover:text-apple-blue">Racing</a>
+                    <a href="/games/puzzle" class="hover:text-apple-blue">Puzzle</a>
+                    <a href="/games/arcade" class="hover:text-apple-blue">Arcade</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-apple-dark to-gray-800 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome to GameLoops</h1>
+            <p class="text-xl text-gray-300">Your ultimate destination for free online games</p>
+        </div>
+    </header>
+
+    <!-- Featured Games -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-apple-dark mb-8">Featured Games</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="featured-games">
+                <!-- Games will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Categories -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-apple-dark mb-8">Game Categories</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <a href="/games/action" class="category-card">
+                    <div class="bg-apple-gray rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                        <i class="fas fa-gamepad text-4xl text-apple-blue mb-4"></i>
+                        <h3 class="text-xl font-semibold">Action</h3>
+                    </div>
+                </a>
+                <a href="/games/racing" class="category-card">
+                    <div class="bg-apple-gray rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                        <i class="fas fa-car text-4xl text-apple-blue mb-4"></i>
+                        <h3 class="text-xl font-semibold">Racing</h3>
+                    </div>
+                </a>
+                <a href="/games/puzzle" class="category-card">
+                    <div class="bg-apple-gray rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                        <i class="fas fa-puzzle-piece text-4xl text-apple-blue mb-4"></i>
+                        <h3 class="text-xl font-semibold">Puzzle</h3>
+                    </div>
+                </a>
+                <a href="/games/arcade" class="category-card">
+                    <div class="bg-apple-gray rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                        <i class="fas fa-joystick text-4xl text-apple-blue mb-4"></i>
+                        <h3 class="text-xl font-semibold">Arcade</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-apple-dark text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">GameLoops</h3>
+                    <p class="text-gray-400">Your ultimate destination for free online games.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Categories</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/games/action" class="text-gray-400 hover:text-white">Action</a></li>
+                        <li><a href="/games/racing" class="text-gray-400 hover:text-white">Racing</a></li>
+                        <li><a href="/games/puzzle" class="text-gray-400 hover:text-white">Puzzle</a></li>
+                        <li><a href="/games/arcade" class="text-gray-400 hover:text-white">Arcade</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-reddit"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                    <form class="flex">
+                        <input type="email" placeholder="Enter your email" class="px-4 py-2 rounded-l-lg w-full">
+                        <button class="bg-apple-blue px-4 py-2 rounded-r-lg">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 GameLoops.online. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/games.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
