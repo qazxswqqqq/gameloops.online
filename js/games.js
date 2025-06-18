@@ -1,3 +1,4 @@
+// 游戏数据
 const games = [
   {
     title: "Apocalypse Truck",
@@ -140,3 +141,40 @@ const games = [
     description: "Ever stayed late at school or walked through a dark hallway alone and felt like something was watching you?  Did you just hear the footsteps?  Is it the wind or someone whistling?  Now imagine that same creep, but at an abandoned mental hospital where animatronic Poppy from FNAF stays in."
   }
 ];
+
+// 生成游戏卡片
+function createGameCard(game) {
+  const card = document.createElement('div');
+  card.className = 'bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow';
+
+  card.innerHTML = `
+    <img src="${game.image}" alt="${game.title}" class="w-full h-48 object-cover">
+    <div class="p-4">
+      <h3 class="text-xl font-semibold mb-2">${game.title}</h3>
+      <p class="text-gray-600 text-sm mb-4">${game.description}</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        ${game.tags.map(tag => `<span class="bg-apple-gray px-2 py-1 rounded-full text-xs">${tag}</span>`).join('')}
+      </div>
+      <a href="/game.html?id=${game.title.replace(/\s+/g, '-').toLowerCase()}" class="block text-center bg-apple-blue text-white py-2 rounded-lg hover:bg-blue-600 transition-colors">
+        Play Now
+      </a>
+    </div>
+  `;
+  return card;
+}
+
+// 加载首页推荐游戏
+function loadFeaturedGames() {
+  const featuredGamesContainer = document.getElementById('featured-games');
+  if (!featuredGamesContainer) return;
+
+  games.slice(0, 6).forEach(game => {
+    const gameCard = createGameCard(game);
+    featuredGamesContainer.appendChild(gameCard);
+  });
+}
+
+// 页面加载时自动执行
+document.addEventListener('DOMContentLoaded', () => {
+  loadFeaturedGames();
+});
