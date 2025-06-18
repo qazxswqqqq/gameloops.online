@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Category</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/js/games.js"></script>
+  <link rel="stylesheet" href="https://cdn.tailwindcss.com">
+</head>
+<body class="bg-apple-gray min-h-screen">
+  <nav class="bg-apple-dark text-white sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <a href="/" class="text-2xl font-bold">GameLoops</a>
+        <div class="hidden md:flex space-x-6">
+          <a href="/category.html?type=action" class="hover:text-apple-blue">Action</a>
+          <a href="/category.html?type=racing" class="hover:text-apple-blue">Racing</a>
+          <a href="/category.html?type=puzzle" class="hover:text-apple-blue">Puzzle</a>
+          <a href="/category.html?type=arcade" class="hover:text-apple-blue">Arcade</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <header class="bg-gradient-to-r from-apple-dark to-gray-800 text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+      <h1 id="category-title" class="text-4xl font-bold mb-4"></h1>
+    </div>
+  </header>
+  <section class="py-12">
+    <div class="container mx-auto px-4">
+      <div id="category-games" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </div>
+  </section>
+  <script>
+    // 获取URL参数
+    function getQueryParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+
+    // 渲染分类游戏
+    function renderCategoryGames() {
+      const type = getQueryParam('type');
+      const titleMap = {
+        action: 'Action Games',
+        racing: 'Racing Games',
+        puzzle: 'Puzzle Games',
+        arcade: 'Arcade Games'
+      };
+      document.getElementById('category-title').textContent = titleMap[type] || 'Games';
+
+      // 筛选包含该分类tag的游戏
+      const filtered = games.filter(game => game.tags.map(t=>t.toLowerCase()).includes(type));
+      const container = document.getElementById('category-games');
+      if (filtered.length === 0) {
+        container.innerHTML = '<p class="text-center text-gray-500 col-span-3">No games found in this category.</p>';
+        return;
+      }
+      container.innerHTML = filtered.map(game => `
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <img src="${game.image}" alt="${game.title}" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold mb-2">${game.title}</h3>
+            <p class="text-gray-600 text-sm mb-4">${game.description}</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              ${game.tags.map(tag => `<span class="bg-apple-gray px-2 py-1 rounded-full text-xs">${tag}</span>`).join('')}
+            </div>
+            <a href="/game.html?id=${game.title.replace(/\s+/g, '-').toLowerCase()}" class="block text-center bg-apple-blue text-white py-2 rounded-lg hover:bg-blue-600 transition-colors">
+              Play Now
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', renderCategoryGames);
+  </script>
+</body>
+</html>
