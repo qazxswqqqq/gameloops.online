@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="js/games.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <nav class="bg-gray-900 text-white p-4 flex justify-between">
+    <a href="/" class="text-2xl font-bold">GameLoops</a>
+    <div>
+      <a href="category.html?type=action" class="mx-2 hover:text-blue-400">Action</a>
+      <a href="category.html?type=racing" class="mx-2 hover:text-blue-400">Racing</a>
+      <a href="category.html?type=puzzle" class="mx-2 hover:text-blue-400">Puzzle</a>
+      <a href="category.html?type=arcade" class="mx-2 hover:text-blue-400">Arcade</a>
+    </div>
+  </nav>
+  <main class="container mx-auto px-4 py-8">
+    <div id="game-detail"></div>
+  </main>
+  <script>
+    function getQueryParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const id = getQueryParam('id');
+      const game = games.find(g => g.title.replace(/\s+/g, '-').toLowerCase() === id);
+      const container = document.getElementById('game-detail');
+      if (!game) {
+        container.innerHTML = '<h2 class="text-2xl text-center text-gray-500">Game not found.</h2>';
+        return;
+      }
+      container.innerHTML = `
+        <h1 class="text-3xl font-bold mb-4">${game.title}</h1>
+        <iframe src="${game.embed}" width="100%" height="600" allowfullscreen class="rounded-lg border mb-4"></iframe>
+        <p class="mb-4">${game.description}</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          ${game.tags.map(tag => `<span class="bg-gray-200 px-2 py-1 rounded-full text-xs">${tag}</span>`).join('')}
+        </div>
+        <a href="/" class="text-blue-600 hover:underline">Back to Home</a>
+      `;
+    });
+  </script>
+</body>
+</html>
